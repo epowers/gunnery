@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 
 from task.models import Execution
 
@@ -32,7 +33,7 @@ status_mapping = {
 def model_icon(model):
     if not model in icons_mapping:
         raise ValueError('Invalid icon name')
-    return '<i class="fa fa-' + icons_mapping[model] + '"></i>'
+    return mark_safe('<i class="fa fa-' + icons_mapping[model] + '"></i>')
 
 
 @register.simple_tag
@@ -41,7 +42,7 @@ def execution_status(status, caption=True):
         html = '<span class="label label-%s"><i class="fa fa-%s"></i> %s</span>' % tuple(status_mapping[status])
     else:
         html = '<span class="label label-%s"><i class="fa fa-%s"></i></span>' % tuple(status_mapping[status][0:2])
-    return html
+    return mark_safe(html)
 
 
 @register.filter

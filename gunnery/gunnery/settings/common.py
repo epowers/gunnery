@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY',"v7(-3eoqjgv4ludmfgc1qjd$62dc^7#7bkt6ha_*88ppj1v8%e")
 PGCRYPTO_DEFAULT_KEY = SECRET_KEY
 
 ALLOWED_HOSTS = []
@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'guardian',
     'crispy_forms',
     'djcelery',
-    'south',
+    #'south',
     'core',
     'task',
     'backend',
@@ -70,11 +70,11 @@ WSGI_APPLICATION = 'gunnery.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gunnery',
         'USER': 'gunnery',
         'PASSWORD': 'gunnery',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
     }
 }
 
@@ -102,9 +102,29 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "core.context_processors.sidebar",
-)
+#TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+#    "core.context_processors.sidebar",
+#)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': True,
+            'context_processors': [
+                'core.context_processors.sidebar',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                ]
+        },
+    },
+]
 
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERY_RESULT_SERIALIZER = "json"

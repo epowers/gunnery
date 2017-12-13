@@ -3,15 +3,15 @@ ENVIRONMENT = 'development'
 
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+#TEMPLATE_DEBUG = True
 
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
+#INSTALLED_APPS += (
+#    'debug_toolbar',
+#)
 
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
+#MIDDLEWARE_CLASSES += (
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+#)
 
 from fnmatch import fnmatch
 
@@ -27,4 +27,4 @@ INTERNAL_IPS = glob_list(['127.0.0.1', '10.0.*.*'])
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
+#DEBUG_TOOLBAR_PATCH_SETTINGS = False

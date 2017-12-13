@@ -69,7 +69,7 @@ class EventHandler(object):
 
     def process(self, event):
         self.event = event
-        print len(self.subscribe_to) == 0 or self.event.type in self.subscribe_to
+        print(len(self.subscribe_to) == 0 or self.event.type in self.subscribe_to)
         if len(self.subscribe_to) == 0 or self.event.type in self.subscribe_to:
             self._process(event)
 

@@ -198,6 +198,6 @@ def department_switch(request, id):
 
 
 def handle_403(request):
-    print 'aaaaaaaa'
+    print('aaaaaaaa')
     messages.error(request, 'Access forbidden')
     return redirect('index')

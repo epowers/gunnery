@@ -1,7 +1,10 @@
 var SidebarModule = (function($){
     function updateSideBarHeight() {
-        document.querySelector('style').textContent +=
+        var style = document.querySelector('style');
+        if( style ) {
+            style.textContent +=
             "@media screen and (min-width:769px) { .side-nav { height: "+$(document).height()+"px; }}";
+        }
     }
 
     $('#department-select').change(function () {

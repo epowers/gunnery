@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from core.models import Department, Application, Environment, Server
 
-from forms import (
+from .forms import (
     ApplicationForm, core_create_form, DepartmentForm, EnvironmentForm,
     ServerForm, ServerRoleForm)
 from .views import ServerRole
@@ -119,7 +119,7 @@ class BaseModal(object):
                     self.message('Saved')
                 return HttpResponse(json.dumps(self.data), content_type="application/json")
             except IntegrityError as e:
-                from django.forms.util import ErrorList
+                from django.forms.utils import ErrorList
 
                 errors = self.form._errors.setdefault("__all__", ErrorList())
                 errors.append('Integrity error')
